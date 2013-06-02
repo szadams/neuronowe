@@ -15,7 +15,7 @@ t = [-1; 1; 1; -1];
 maxiter = 1000;%max. no. of iterations
 small = 0.05;
 eta = 0.95;		% learning rate
-h = 2;			% #hidden units
+h = 2;			% hidden units
 
 [V, W, e] = backprop(x, t, h, small, eta, maxiter);
 
