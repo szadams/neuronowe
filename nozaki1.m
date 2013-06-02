@@ -12,17 +12,18 @@ x = 0;
 i=1;
 data = [];
 while x<=1
-   x1 = rand(1);
+   x1 =  rand(1)*2*pi;
    data(i,1) = x1;
-   data(i,2) = n_fun2(x1);
+   data(i,2) = n_fun1(x1);
    i = i+1;
    x = x+0.01;
 end;
 
+data = sortrows(data, 1);
 % identify rules
 K=10;
 %load fuzzy premises
-labels = load('labels11.txt');
+labels = load('labels5_2.txt');
 
 figure,
 x = 0:0.01:2*pi;
@@ -63,8 +64,8 @@ end;
 err = mean(err)
 
 figure
-z = 0:0.01:1;
-plot(z, n_fun2(z),'b-'); hold on;
+z = 0:0.01:2*pi;
+plot(z, n_fun1(z),'b-'); hold on;
 plot(data(:,1), data(:,2), 'b*'); hold on;
 plot(data(:,1), y, 'r*-'); grid on;
 
@@ -74,7 +75,7 @@ z = 0;
 h = 0.01;
 j = 1;
 zz=[];
-while z <= 1
+while z <= 2*pi
    numerator = 0;
    denumerator = 0;
    for i = 1:length(labels)
@@ -83,14 +84,14 @@ while z <= 1
       denumerator = denumerator + w;
    end;
    y(j) = numerator/denumerator;
-   err = [err (y(j) - n_fun2(z))^2];
+   err = [err (y(j) - n_fun1(z))^2];
    j = j+1;
    z = z+h;
 end;
 err = mean(err)
 
 figure
-plot(x, n_fun2(x),'b-'); hold on;
+plot(x, n_fun1(x),'b-'); hold on;
 plot(data(:,1), data(:,2), 'b*'); hold on;
-z = 0:h:(1-h);
+z = 0:h:2*pi;
 plot(z, y, 'r.-'); grid on;
