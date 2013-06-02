@@ -22,7 +22,7 @@ rand_data = [];
         for i = 1:100  
             rand_data(i) =rand(1)*2*pi;  
         end;
-disp(rand_data);      
+%disp(rand_data);      
 
 % identify rules
 K=10;
@@ -30,7 +30,7 @@ K=10;
 labels = load('labels5_2.txt');
 
 figure,
-x = 0:0.01:1;
+x = 0:0.01:2*pi;
 for i=1:length(labels)
    plot(x,mytrimf(x,labels(i,:)),'k-','LineWidth',2); hold on; grid on;
 end;
@@ -65,7 +65,7 @@ end;
 err = mean(err)
 
 figure
-z = 0:0.01:1;
+z = 0:0.01:2*pi;
 plot(z, n_fun2(z),'b-'); hold on;
 plot(data(:,1), data(:,2), 'b*'); hold on;
 plot(data(:,1), y, 'r*-'); grid on;
@@ -76,7 +76,7 @@ z = 0;
 h = 0.01;
 j = 1;
 zz=[];
-while z <= 1
+while z <= 2*pi
    numerator = 0;
    denumerator = 0;
    for i = 1:length(labels)
@@ -96,4 +96,3 @@ plot(x, n_fun2(x),'b-'); hold on;
 plot(data(:,1), data(:,2), 'b*'); hold on;
 z = 0:h:(1-h);
 plot(z, y, 'r.-'); grid on;
-
