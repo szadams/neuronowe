@@ -25,7 +25,7 @@ K=10;
 labels = load('labels11.txt');
 
 figure,
-x = 0:0.01:2*pi;
+x = 0:0.01:1;
 for i=1:length(labels)
    plot(x,mytrimf(x,labels(i,:)),'k-','LineWidth',2); hold on; grid on;
 end;
