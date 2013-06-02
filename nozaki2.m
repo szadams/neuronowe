@@ -12,18 +12,14 @@ x = 0;
 i=1;
 data = [];
 while x<=1
-   data(i,1) = x;
-   data(i,2) = n_fun2(x);
+   x1 =  rand(1)*2*pi;
+   data(i,1) = x1;
+   data(i,2) = n_fun2(x1);
    i = i+1;
-   x = x+0.1;
+   x = x+0.01;
 end;
 
-rand_data = [];  
-        for i = 1:100  
-            rand_data(i) =rand(1)*2*pi;  
-        end;
-%disp(rand_data);      
-
+data = sortrows(data, 1);
 % identify rules
 K=10;
 %load fuzzy premises
@@ -47,6 +43,9 @@ for i = 1:length(labels)
       denumerator = denumerator + w;
    end;
    b(i) = numerator/denumerator;
+   if(isnan(b(i))) 
+       b(i) = 0;   
+   end;
 end;
 
 % error of approximmation to input data
@@ -94,5 +93,5 @@ err = mean(err)
 figure
 plot(x, n_fun2(x),'b-'); hold on;
 plot(data(:,1), data(:,2), 'b*'); hold on;
-z = 0:h:(1-h);
+z = 0:h:(2*pi-h);
 plot(z, y, 'r.-'); grid on;
