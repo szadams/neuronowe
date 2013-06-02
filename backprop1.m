@@ -63,18 +63,22 @@ end
 i = 1;
 test_inp = [];
 x = 0;
-while x<=1
-   test_inp(i,1) = train_inp(i,1);
+
+for i = 1:length(train_inp)
+   x1 = rand(1)*2*pi;
+   test_inp(i,1) = x1;
    test_inp(i,2) = 1;
    i = i+1;
-   x = x+0.01;
 end;
+
+alr = eta;
+blr = eta/10;
 
 for i=1:maxiter
     pred = weight_hidden_output*tanh(test_inp*weight_input_hidden)';
     error = pred' - test_inp(:,1);
-    err1(i) =  (sum(error.^2))^0.5;
-   
-    figure(1);
-    plot(err1);
+    err(i) =  (sum(error.^2))^0.5;
+    figure(2);
+    plot(pred);
 end;
+
