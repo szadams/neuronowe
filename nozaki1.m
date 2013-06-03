@@ -12,9 +12,9 @@ x = 0;
 i=1;
 data = [];
 while x<=1
-   x1 =  rand(1)*2*pi;
-   data(i,1) = x1;
-   data(i,2) = n_fun1(x1);
+   tmp =  rand(1)*2*pi;
+   data(i,1) = tmp;
+   data(i,2) = n_fun1(tmp);
    i = i+1;
    x = x+0.01;
 end;
